@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.jmruirod.firstspring7finalprojecthotel.exception.BadRequestException;
 import es.jmruirod.firstspring7finalprojecthotel.model.Hotel;
 import es.jmruirod.firstspring7finalprojecthotel.service.HotelServiceInterface;
 
@@ -17,10 +18,21 @@ public class HotelController
     @Autowired
     private HotelServiceInterface service;
 
-    @GetMapping(value = "hotel/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Hotel findById(@PathVariable Long id) 
+    @GetMapping(value = "hotel/{textId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Hotel findById(@PathVariable String textId) 
     {
-        return this.service.findById(id);        
+        Long numericId;
+        
+        try 
+        {
+            numericId = Long.parseLong(textId);           
+        } 
+        catch (NumberFormatException e) 
+        {
+            throw new BadRequestException("Invalid parameter data type.");
+        }
+
+        return this.service.findById(numericId);
     }
 
     @GetMapping(value = "hotels", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -32,6 +44,7 @@ public class HotelController
     @GetMapping(value = "hotel/name/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Hotel findByName(@PathVariable String name) 
     {
+        name = name.replace("-", " ");
         return this.service.findByName(name);        
     }
 }

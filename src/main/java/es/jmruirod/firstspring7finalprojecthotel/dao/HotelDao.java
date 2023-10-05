@@ -8,6 +8,6 @@ import es.jmruirod.firstspring7finalprojecthotel.model.Hotel;
 
 public interface HotelDao extends JpaRepository<Hotel, Long>
 {
-    @Query("SELECT h FROM Hotel h WHERE h.name = :name LIMIT 1")
+    @Query("SELECT h FROM Hotel h WHERE h.name = :name")
     public Hotel findByName(@Param("name") String name);
 }
