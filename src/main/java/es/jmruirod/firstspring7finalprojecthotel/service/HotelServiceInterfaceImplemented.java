@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.jmruirod.firstspring7finalprojecthotel.dao.HotelDao;
-import es.jmruirod.firstspring7finalprojecthotel.exception.BadRequestException;
 import es.jmruirod.firstspring7finalprojecthotel.exception.EmptyHotelListException;
 import es.jmruirod.firstspring7finalprojecthotel.exception.HotelNotFoundException;
 import es.jmruirod.firstspring7finalprojecthotel.model.Hotel;
