@@ -24,40 +24,15 @@ public class HotelController
     private HotelServiceInterface service;
 
     /**
-     * Obtiene un hotel por su ID.
-     *
-     * @param textId El ID del hotel a buscar (como cadena de texto).
-     * @return El hotel con el ID especificado.
-     * @throws BadRequestException Si el parámetro no es un número válido.
-     * @apiNote GET: localhost:PUERTO/hotel/1
-     */
-    @GetMapping(value = "hotel/{textId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Hotel findById(@PathVariable String textId) 
-    {
-        Long numericId;
-        
-        try 
-        {
-            numericId = Long.parseLong(textId);           
-        } 
-        catch (NumberFormatException e) 
-        {
-            throw new BadRequestException("Invalid parameter data type.");
-        }
-
-        return this.service.findById(numericId);
-    }
-
-    /**
      * Obtiene una lista de todos los hoteles disponibles.
      *
      * @return Lista de hoteles disponibles.
      * @apiNote GET: localhost:PUERTO/hotels
      */
     @GetMapping(value = "hotels", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Hotel> getAll() 
+    public List<Hotel> findByAvailable() 
     {
-        return this.service.getAll();        
+        return this.service.findByAvailable();        
     }
 
     /**

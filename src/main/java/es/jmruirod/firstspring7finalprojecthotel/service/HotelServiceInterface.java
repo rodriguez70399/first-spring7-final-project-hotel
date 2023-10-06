@@ -12,19 +12,11 @@ import es.jmruirod.firstspring7finalprojecthotel.model.Hotel;
 public interface HotelServiceInterface 
 {
     /**
-     * Obtiene un hotel identificado por su ID.
-     * 
-     * @param id El ID del hotel a buscar.
-     * @return El hotel buscado, o null si no se encuentra.
-     */
-    public Hotel findById(Long id);
-
-    /**
      * Obtiene una lista de todos los hoteles disponibles.
      * 
      * @return Lista de hoteles disponibles.
      */
-    public List<Hotel> getAll();
+    public List<Hotel> findByAvailable();
 
     /**
      * Obtiene un hotel identificado por su nombre.

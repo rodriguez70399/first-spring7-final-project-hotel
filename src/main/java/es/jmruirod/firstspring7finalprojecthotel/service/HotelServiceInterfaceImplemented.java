@@ -21,27 +21,16 @@ public class HotelServiceInterfaceImplemented implements HotelServiceInterface
 {
     @Autowired
     private HotelDao hotelDao;
-    
-    /**
-     * {@inheritDoc}
-     * 
-     * @throws HotelNotFoundException Si el hotel no se encuentra.
-     */
-    @Override
-    public Hotel findById(Long id) 
-    {
-        return this.hotelDao.findById(id).orElseThrow(() -> new HotelNotFoundException(id));
-    }
 
     /**
      * {@inheritDoc}
      * 
-     * @throws EmptyHotelListException Si el listado de hoteles esta vacio.
+     * @throws EmptyHotelListException Si el listado de hoteles disponibles esta vacio.
      */
     @Override
-    public List<Hotel> getAll() 
+    public List<Hotel> findByAvailable() 
     {
-        List<Hotel> hotels = this.hotelDao.findAll();
+        List<Hotel> hotels = this.hotelDao.findByAvailable();
 
         if(hotels.isEmpty())
         {
